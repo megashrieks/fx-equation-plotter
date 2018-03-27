@@ -6,6 +6,7 @@
 package equationplotter;
 
 import javafx.application.Application;
+import p1.Etree;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
@@ -55,28 +56,29 @@ public class EquationPlotter extends Application {
         double t_step = Double.parseDouble(((TextField) scene.lookup("#t_step")).getText());
         drawAxis(gc,c);
         
-        //ExpressionTree etX = new ExpressionTree(x_eqn);
-        //ExpressionTree etY = new ExpressionTree(y_eqn);
+        Etree etX = new Etree(x_eqn);
+        Etree etY = new Etree(y_eqn);
+
         double width_offset = c.getWidth()/2;
         double height_offset = c.getHeight()/2;
-        double characters[] = new double[26];
+        double characters[] = new double[26];        
         gc.setFill(Color.BLACK);
-        ScriptEngineManager manager;
-        ScriptEngine engine;
+//        ScriptEngineManager manager;
+  //      ScriptEngine engine;
         try{
-            manager = new ScriptEngineManager();
-            engine = manager.getEngineByName("js");
+    //        manager = new ScriptEngineManager();
+      //      engine = manager.getEngineByName("js");
              for(double i = t_start;i <= t_end;i+=t_step){
-               //characters['t'-'a'] = i;
-              //double x = etX.calculate(characters)*divisions+width_offset;
-                //double y = etY.calculate(characters)*divisions+height_offset;
+            	 characters['t'-'a'] = i;
+            	 double x = etX.Evaluate(characters)*divisions+width_offset;
+            	 double y = etY.Evaluate(characters)*divisions+height_offset;
             
                 //when the ExpressionTree class is available
                //the following lines will be replaced by the above lines
-              double x_result = Double.parseDouble(engine.eval(x_eqn.replace("(t)",i+"")).toString());
+              /*double x_result = Double.parseDouble(engine.eval(x_eqn.replace("(t)",i+"")).toString());
               double y_result = Double.parseDouble(engine.eval(y_eqn.replace("(t)",i+"")).toString());
               double x = (x_result*divisions)+width_offset;
-              double y = (y_result*divisions)+height_offset;
+              double y = (y_result*divisions)+height_offset;*/
              //drawing each point
               gc.fillArc(x, y, 2, 2, 45, 240, ArcType.ROUND);
         }
