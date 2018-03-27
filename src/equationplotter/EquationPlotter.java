@@ -19,7 +19,9 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.ArcType;
-
+import javax.script.ScriptEngine;
+import javax.script.ScriptEngineManager;
+import javax.script.ScriptException;
 /**
  *
  * @author shrikanth
@@ -59,17 +61,27 @@ public class EquationPlotter extends Application {
         double height_offset = c.getHeight()/2;
         double characters[] = new double[26];
         gc.setFill(Color.BLACK);
-        for(double i = t_start;i <= t_end;i+=t_step){
-            characters['t'-'a'] = i;
-            //double x = etX.calculate(characters)*divisions+width_offset;
-            //double y = etY.calculate(characters)*divisions+height_offset;
+        ScriptEngineManager manager;
+        ScriptEngine engine;
+        try{
+            manager = new ScriptEngineManager();
+            engine = manager.getEngineByName("js");
+             for(double i = t_start;i <= t_end;i+=t_step){
+               //characters['t'-'a'] = i;
+              //double x = etX.calculate(characters)*divisions+width_offset;
+                //double y = etY.calculate(characters)*divisions+height_offset;
             
-            //when the ExpressionTree class is available
-            //the following lines will be replaced by the above lines
-            double x = (0.6*Math.cos(i)*(1-Math.cos(i))*divisions)+width_offset;
-            double y = (0.6*Math.sin(i)*(1-Math.cos(i))-Math.sin(2*i)*divisions)+height_offset;
-            //drawing each point
-            gc.fillArc(x, y, 2, 2, 45, 240, ArcType.ROUND);
+                //when the ExpressionTree class is available
+               //the following lines will be replaced by the above lines
+              double x_result = Double.parseDouble(engine.eval(x_eqn.replace("(t)",i+"")).toString());
+              double y_result = Double.parseDouble(engine.eval(y_eqn.replace("(t)",i+"")).toString());
+              double x = (x_result*divisions)+width_offset;
+              double y = (y_result*divisions)+height_offset;
+             //drawing each point
+              gc.fillArc(x, y, 2, 2, 45, 240, ArcType.ROUND);
+        }
+        }catch(Exception e){
+            System.out.println(e);
         }
         
     }
