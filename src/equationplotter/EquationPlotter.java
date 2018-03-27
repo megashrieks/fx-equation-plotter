@@ -50,22 +50,25 @@ public class EquationPlotter extends Application {
         String y_eqn = ((TextField) scene.lookup("#y_eqn")).getText();
         double t_start = Double.parseDouble(((TextField) scene.lookup("#t_start")).getText());
         double t_end = Double.parseDouble(((TextField) scene.lookup("#t_end")).getText());
-        double t_step = 0.01;
+        double t_step = Double.parseDouble(((TextField) scene.lookup("#t_step")).getText());
         drawAxis(gc,c);
         
         //ExpressionTree etX = new ExpressionTree(x_eqn);
         //ExpressionTree etY = new ExpressionTree(y_eqn);
         double width_offset = c.getWidth()/2;
         double height_offset = c.getHeight()/2;
-        //double characters[] = new double[26];
+        double characters[] = new double[26];
+        gc.setFill(Color.BLACK);
         for(double i = t_start;i <= t_end;i+=t_step){
-            //characters['t'-'a'] = i;
-            //double x = etX.calculate(characters);
-            //double y = etY.calculate(characters);
-            double x = (i*i*divisions)+width_offset;
-            double y = (2*i*divisions)+height_offset;
+            characters['t'-'a'] = i;
+            //double x = etX.calculate(characters)*divisions+width_offset;
+            //double y = etY.calculate(characters)*divisions+height_offset;
             
-            gc.setFill(Color.BLACK);
+            //when the ExpressionTree class is available
+            //the following lines will be replaced by the above lines
+            double x = (0.6*Math.cos(i)*(1-Math.cos(i))*divisions)+width_offset;
+            double y = (0.6*Math.sin(i)*(1-Math.cos(i))-Math.sin(2*i)*divisions)+height_offset;
+            //drawing each point
             gc.fillArc(x, y, 2, 2, 45, 240, ArcType.ROUND);
         }
         

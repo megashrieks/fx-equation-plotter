@@ -12,18 +12,19 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane maxWidth="-Infinity" minWidth="-Infinity" prefHeight="524.0" prefWidth="650.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxWidth="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="650.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <bottom>
       <VBox prefHeight="141.0" prefWidth="650.0" BorderPane.alignment="CENTER">
          <children>
-            <GridPane prefHeight="84.0" prefWidth="650.0">
+            <GridPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="250.0" prefWidth="650.0">
                <columnConstraints>
                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" prefWidth="100.0" />
                </columnConstraints>
                <rowConstraints>
                   <RowConstraints maxHeight="139.0" minHeight="10.0" prefHeight="95.0" vgrow="SOMETIMES" />
                   <RowConstraints maxHeight="113.0" minHeight="6.0" prefHeight="97.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="113.0" minHeight="10.0" prefHeight="97.0" vgrow="SOMETIMES" />
                </rowConstraints>
                <children>
                   <HBox alignment="CENTER" prefHeight="71.0" prefWidth="324.0" GridPane.columnIndex="1">
@@ -35,7 +36,7 @@
                         <Insets />
                      </GridPane.margin>
                   </HBox>
-                  <HBox alignment="CENTER" layoutX="10.0" layoutY="5.0" prefHeight="45.0" prefWidth="329.0">
+                  <HBox alignment="CENTER" layoutX="10.0" layoutY="5.0" minHeight="-Infinity" prefWidth="329.0">
                      <children>
                         <Label alignment="CENTER" prefHeight="100.0" prefWidth="150.0" text="X" textAlignment="CENTER" />
                         <TextField id="x_eqn" minHeight="-Infinity" prefHeight="30.0" prefWidth="150.0">
@@ -65,13 +66,19 @@
                         </TextField>
                      </children>
                   </HBox>
+                  <HBox alignment="CENTER" minHeight="-Infinity" prefHeight="40.0" prefWidth="325.0" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+                     <children>
+                        <Label alignment="CENTER" prefHeight="100.0" prefWidth="150.0" text="T-Step" textAlignment="CENTER" />
+                        <TextField id="t_step" minHeight="-Infinity" prefHeight="30.0" prefWidth="150.0" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                     <children>
+                        <Button id="redraw" alignment="CENTER" mnemonicParsing="false" prefWidth="100.0" text="Redraw" textAlignment="CENTER" />
+                     </children>
+                  </HBox>
                </children>
             </GridPane>
-            <HBox alignment="CENTER" prefHeight="51.0" prefWidth="650.0">
-               <children>
-                  <Button id="redraw" mnemonicParsing="false" prefWidth="150.0" text="Redraw" textAlignment="CENTER" />
-               </children>
-            </HBox>
          </children>
       </VBox>
    </bottom>
